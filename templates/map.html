@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Map{% endblock %}
+
+{% set width = map_data[0]|length - 1 %}
+{% set height = map_data|length - 1 %}
+
+{% block content %}
+<div class="map">
+  {% for y in range(height) %}
+  <div class="row">
+    {%- for x in range(width) -%}
+    {%- set cell = map_data[x][y] -%}
+    <span class="cell" title="{{ cell.type }}"
+      style="background-color: {{ cell.background_color }}; color: {{ cell.foreground_color }}; outline-color: {{ cell.outline_color }};">
+      {{- cell.symbol -}}</span>
+    {%- endfor -%}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
